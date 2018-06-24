@@ -1,0 +1,19 @@
+{
+  "name": "currencyconverter",
+  "version": "1.0.0",
+  "description": "An application that converts one currency yo another both online and offline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DotunAj/currencyconverter.git"
+  },
+  "author": "Ajala Ayodotun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DotunAj/currencyconverter/issues"
+  },
+  "homepage": "https://github.com/DotunAj/currencyconverter#readme"
+}
