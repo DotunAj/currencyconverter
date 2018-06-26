@@ -14,15 +14,17 @@
 
     <div class="container">
         <div class = "contained">
-            <select class="currency-box" id="base-currency">
+            <p class="to-text">from</p>
 
+            <select class="currency-box" id="base-currency">
+            </select>
+
+            <p class="to-text">to</p>
+            <select class="currency-box" id="to-currency">
             </select>
 
             <input class="amount-box" type="number">
-            <p class="to-text">to</p>
-            <select class="currency-box" id="to-currency">
 
-            </select>
 
 
 
@@ -30,6 +32,7 @@
         <button class="convert">Convert</button>
         <input class="amount-box" type="number" disabled>
     </div>
+    <script src="https://rawgit.com/jakearchibald/idb/master/lib/idb.js" type="text/javascript"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
