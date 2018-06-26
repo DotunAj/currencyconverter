@@ -1,7 +1,7 @@
 html {
     box-sizing: border-box;
-/*     background-image: linear-gradient(to right, #51B8CC 0%, #89B5D0 40%, #89DDD2 60%, #51B8CC 100%);
- */    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(to right, #51B8CC 0%, #89B5D0 40%, #89DDD2 60%, #51B8CC 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
     font-weight: 200;
 }

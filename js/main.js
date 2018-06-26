@@ -2,11 +2,20 @@ const baseCurrency = document.querySelector('#base-currency');
 const toCurrency = document.querySelector('#to-currency');
 let showingCurrency = false;
 
+if(navigator.serviceWorker){
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+        .catch((err) => {
+            console.log(err);
+        })
+    })
+}
+
 const dbPromise = idb.open('c-currency', 1, (upgradeDb) => {
     keyVal = upgradeDb.createObjectStore('currencies', {keyPath: 'id'});
 })
 
-fetch("https://free.currencycoverterapi.com/api/v5/currencies")
+fetch("https://free.currencyconverterapi.com/api/v5/currencies")
     .then((res) => {
         return res.json();
     })
@@ -51,6 +60,8 @@ if(!showingCurrency) {
         const tx = db.transaction('currencies');
         const store = tx.objectStore('currencies');
         store.getAll().then((currencies) => {
+            if(currencies.length == 0) return
+            //Only run if there is data in the db
             html = generateHtml(currencies);
             displayHtml(html);
             showingCurrency = true;
@@ -58,6 +69,8 @@ if(!showingCurrency) {
     })
 }
 
+//TODO: Consider databasing only dynamic content like rates and not static content like
+//the currencies
 //TODO: Implement the service worker to cache static content
 //TODO: Implement the covertion itself
 
