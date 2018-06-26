@@ -29,7 +29,7 @@ body {
 }
 .contained {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 10px;
     justify-items: center;
     align-items: center;
@@ -68,6 +68,12 @@ body {
 
 .convert:hover {
     background: rgba(95, 183, 205, 1);
+}
+
+.to-text {
+    margin: 5px auto;
+    font-weight: 700;
+    color: #4d4b4b;
 }
 
 @media screen and (max-width: 600px) {
