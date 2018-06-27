@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Currency Converter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
@@ -15,22 +15,15 @@
     <div class="container">
         <div class = "contained">
             <p class="to-text">from</p>
-
             <select class="currency-box" id="base-currency">
             </select>
-
             <p class="to-text">to</p>
             <select class="currency-box" id="to-currency">
             </select>
-
-            <input class="amount-box" type="number">
-
-
-
-
+            <input id="from-amount" class="amount-box" type="number" placeholder="0.00">
         </div>
         <button class="convert">Convert</button>
-        <input class="amount-box" type="number" disabled>
+        <input id="to-amount" class="amount-box" type="number" disabled>
     </div>
     <script src="https://rawgit.com/jakearchibald/idb/master/lib/idb.js"></script>
     <script src="js/main.js"></script>
