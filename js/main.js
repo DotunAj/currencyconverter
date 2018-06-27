@@ -14,7 +14,7 @@ if(navigator.serviceWorker){
     })
 }
 
-const dbPromise = idb.open('c-currency', 1, (upgradeDb) => {
+const dbPromise = idb.open('c-currency', 2, (upgradeDb) => {
     const keyVal = upgradeDb.createObjectStore('currencies', {keyPath: 'id'});
     const rates = upgradeDb.createObjectStore('rates');
 })
