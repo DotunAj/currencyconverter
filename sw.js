@@ -3,9 +3,9 @@ self.addEventListener('install', (event) => {
         caches.open('converter-static-v1')
         .then((cache) => {
             cache.addAll([
-                '/',
-                'css/main.css',
-                'js/main.js',
+                './',
+                './css/main.css',
+                './js/main.js',
                 'https://rawgit.com/jakearchibald/idb/master/lib/idb.js'
             ]);
         })
