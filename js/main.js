@@ -8,13 +8,44 @@ let showingCurrency = false;
 if(navigator.serviceWorker){
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
+        .then((reg) => {
+            if(!navigator.serviceWorker.controller) return;
+
+            if(reg.waiting) {
+                updateServiceWorker(reg.waiting);
+                return;
+            }
+
+            if(reg.installing) {
+                trackSwInstalling(reg.installing);
+                return;
+            }
+
+            reg.addEventListener('updatefound', () => {
+                trackSwInstalling(reg.installing);
+            })
+        })
         .catch((err) => {
             console.log(err);
         })
     })
 }
 
-const dbPromise = idb.open('c-currency', 2, (upgradeDb) => {
+//Function to track service Worker installing process
+function trackSwInstalling(worker) {
+    worker.addEventListener('statechange', ()=> {
+        if(worker.state === 'installed'){
+            updateServiceWorker(worker)
+        }
+    });
+}
+
+//Function that automatically updates worker when a new version ships
+function updateServiceWorker(worker) {
+    worker.postMessage({action:'skipWaiting'});
+}
+
+const dbPromise = idb.open('c-currency', 1, (upgradeDb) => {
     const keyVal = upgradeDb.createObjectStore('currencies', {keyPath: 'id'});
     const rates = upgradeDb.createObjectStore('rates');
 })
