@@ -1,4 +1,4 @@
-const cacheName = 'converter-static-v2';
+const cacheName = 'converter-static-v3';
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
@@ -8,7 +8,8 @@ self.addEventListener('install', (event) => {
                 './',
                 './css/main.css',
                 './js/main.js',
-                'https://rawgit.com/jakearchibald/idb/master/lib/idb.js'
+                'https://rawgit.com/jakearchibald/idb/master/lib/idb.js',
+                'https://free.currencyconverterapi.com/api/v5/currencies'
             ]);
         })
     )

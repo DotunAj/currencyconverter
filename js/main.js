@@ -2,8 +2,10 @@ const baseCurrency = document.querySelector('#base-currency');
 const toCurrency = document.querySelector('#to-currency');
 const baseAmountInput = document.querySelector('#from-amount');
 const toAmountInput = document.querySelector('#to-amount');
-const convertButton = document.querySelector('.convert')
-let showingCurrency = false;
+const convertButton = document.querySelector('.convert');
+const toast = document.querySelector('.toast-msg');
+const loader = document.querySelector('.loader');
+let showingConversion = false;
 
 if(navigator.serviceWorker){
     window.addEventListener('load', () => {
@@ -31,8 +33,11 @@ if(navigator.serviceWorker){
     })
 }
 
+let refreshing = false;
 navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshing) return;
     window.location.reload();
+    refreshing = true;
 })
 
 //Function to track service Worker installing process
@@ -81,7 +86,8 @@ fetch("https://free.currencyconverterapi.com/api/v5/currencies")
             const store = tx.objectStore('currencies');
             store.getAll().then((currencies) => {
                 if(currencies.length === 0) {
-                    //TODO: Implement UX for when there is no currency data in the idb
+                    //Implement UX for when there is no currency data in the idb
+                    toast.classList.add('active');
                     return
                 }
                 //Only run if there is data in the db
@@ -96,7 +102,7 @@ fetch("https://free.currencyconverterapi.com/api/v5/currencies")
 function generateHtml(stuffs) {
     return stuffs.map(stuff => {
         return `
-        <option value="${stuff.id}">${stuff.id}</option>
+        <option value="${stuff.id}">${stuff.id} - ${stuff.currencyName}</option>
         `
     }).sort().join(' ');
 }
@@ -117,20 +123,24 @@ function convertCalculation(rate, amount) {
 
 //functon that handles the click event of the convertion button
 function handleClick() {
+    startLoader();
     let from = baseCurrency.value;
     let to = toCurrency.value;
     const fromAmount = baseAmountInput.value;
     let query = `${from}_${to}`;
     let convertUrl = new URL(`https://free.currencyconverterapi.com/api/v5/convert?q=${from}_${to}&compact=ultra`);
+    toAmountInput.value = '';
     //Fetch the rate
     //Covert from one currency to another with fetched rate
     //Stored rate in idb for offline usage
+    //TODO: Make the app first check the idb before fetching and look for a way to give the idb age
     fetch(convertUrl)
         .then((res) => {
             return res.json();
         })
         .then((data) => {
-            //TODO: Implement Loader for the converting action
+            // Loader for the converting action
+            stopLoader();
             toAmountInput.value = `${convertCalculation(data, fromAmount)}${to}`;
             dbPromise.then((db) => {
                 if(!db) return;
@@ -149,14 +159,39 @@ function handleClick() {
                     if (!cursor) return;
                     if(cursor.key === query){
                         toAmountInput.value = `${convertCalculation(cursor.value, fromAmount)}${to}`;
+                        showingConversion = true;
                         return;
                     }
                     return cursor.continue().then(doAgain);
                 }).then(() => {
-                    //TODO: UX for when the rates are not found in the idb
+                    //UX for when the rates are not found in the idb
+                    if (!showingConversion){
+                        console.log("yeah")
+                        toastHandler();
+                    }
+                    stopLoader();
+                    showingConversion = false;
                 })
             })
         })
+}
+
+//Function to slide in toast msg
+function toastHandler() {
+    toast.classList.add('active');
+    setTimeout(() => {
+        toast.classList.remove('active');
+    }, 3000);
+}
+
+function startLoader() {
+    loader.classList.remove('display-none');
+    convertButton.classList.add('display-none');
+}
+
+function stopLoader() {
+    loader.classList.add('display-none');
+    convertButton.classList.remove('display-none');
 }
 
 convertButton.addEventListener('click', handleClick);

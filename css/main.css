@@ -30,13 +30,11 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* display: grid; */
     transform: translate(-50%, -50%);
     margin: auto;
-    justify-items: center;
-    align-items: center;
-    grid-gap: 20px;
+    height: 460px;
 }
+
 .contained {
     display: grid;
     grid-gap: 5px;
@@ -73,13 +71,14 @@ body {
 .currency-box {
     background: rgba(94, 183, 205, 0.4);
     text-transform: capitalize;
-    font-size: 15pt;
+    font-size: 12pt;
     font-weight: 300;
     padding: 10px;
     color: #4d4b4b;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.10);
     border-radius: 5px;
     border: none;
+    max-width: 250px;
 }
 
 .convert {
@@ -100,5 +99,45 @@ body {
     background: rgba(95, 183, 205, 1);
 }
 
+.toast-msg{
+    position: absolute;
+    bottom: 100%;
+    text-transform: none;
+    z-index: -1;
+    background: #555252;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    transform: translateY(0%);
+    transition: transform ease-out 0.5s;
+}
+
+.toast-msg p {
+    margin: 0;
+    text-align: center;
+}
+
+.active {
+    transform: translateY(100%);
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #51B8CC;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin-top: 10px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.display-none {
+    display: none;
+}
 
 
