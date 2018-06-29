@@ -64,10 +64,6 @@ body {
     margin-top: 15px;
 }
 
-
-
-
-
 .currency-box {
     background: rgba(94, 183, 205, 0.4);
     text-transform: capitalize;
@@ -103,7 +99,6 @@ body {
     position: absolute;
     bottom: 100%;
     text-transform: none;
-    z-index: -1;
     background: #555252;
     padding: 10px;
     color: white;
@@ -114,6 +109,7 @@ body {
 
 .toast-msg p {
     margin: 0;
+    font-size: 13px;
     text-align: center;
 }
 

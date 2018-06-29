@@ -1,4 +1,4 @@
-const cacheName = 'converter-static-v3';
+const cacheName = 'converter-static-v4';
 
 self.addEventListener('install', (event) => {
     event.waitUntil(

@@ -111,8 +111,8 @@ function generateHtml(stuffs) {
 function displayHtml(html) {
     baseCurrency.innerHTML = html;
     toCurrency.innerHTML = html;
-    baseCurrency.querySelector('[value="NGN"]').selected = true;
-    toCurrency.querySelector('[value="USD"]').selected = true;
+    baseCurrency.querySelector('[value="USD"]').selected = true;
+    toCurrency.querySelector('[value="NGN"]').selected = true;
 }
 
 //function that does the major convertion from one currency to another
