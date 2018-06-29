@@ -33,7 +33,6 @@ if(navigator.serviceWorker){
 
 navigator.serviceWorker.addEventListener('controllerchange', () => {
     window.location.reload();
-    console.log('yey')
 })
 
 //Function to track service Worker installing process
