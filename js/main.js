@@ -9,7 +9,7 @@ let showingConversion = false;
 
 if(navigator.serviceWorker){
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js', {scope: '/currencyconverter'})
         .then((reg) => {
             if(!navigator.serviceWorker.controller) return;
 
