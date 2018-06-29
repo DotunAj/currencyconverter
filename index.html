@@ -8,23 +8,25 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 <body>
-    <header>
+    <section class="container">
         <h2 id="app-name">Currency Coverter</h2>
-    </header>
-
-    <div class="container">
         <div class = "contained">
-            <p class="to-text">from</p>
+
+            <p class="ptext">from</p>
             <select class="currency-box" id="base-currency">
             </select>
-            <p class="to-text">to</p>
+
+            <p class="ptext">amount</p>
+            <input id="from-amount" class="amount-box" type="number" placeholder="0">
+
+            <p class="ptext">to</p>
             <select class="currency-box" id="to-currency">
             </select>
-            <input id="from-amount" class="amount-box" type="number" placeholder="0.00">
+
+            <button class="convert">Convert</button>
+            <input id="to-amount" class="amount-box" type="text" disabled>
         </div>
-        <button class="convert">Convert</button>
-        <input id="to-amount" class="amount-box" type="number" disabled>
-    </div>
+    </section>
     <script src="https://rawgit.com/jakearchibald/idb/master/lib/idb.js"></script>
     <script src="js/main.js"></script>
 </body>

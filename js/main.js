@@ -7,7 +7,7 @@ let showingCurrency = false;
 
 if(navigator.serviceWorker){
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
+        navigator.serviceWorker.register('/sw.js')
         .then((reg) => {
             if(!navigator.serviceWorker.controller) return;
 
@@ -30,6 +30,11 @@ if(navigator.serviceWorker){
         })
     })
 }
+
+navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
+    console.log('yey')
+})
 
 //Function to track service Worker installing process
 function trackSwInstalling(worker) {
@@ -127,7 +132,7 @@ function handleClick() {
         })
         .then((data) => {
             //TODO: Implement Loader for the converting action
-            toAmountInput.value = convertCalculation(data, fromAmount);
+            toAmountInput.value = `${convertCalculation(data, fromAmount)}${to}`;
             dbPromise.then((db) => {
                 if(!db) return;
                 let tx = db.transaction('rates', 'readwrite');
@@ -144,7 +149,7 @@ function handleClick() {
                 store.openCursor().then( function doAgain(cursor) {
                     if (!cursor) return;
                     if(cursor.key === query){
-                        toAmountInput.value = convertCalculation(cursor.value, fromAmount);
+                        toAmountInput.value = `${convertCalculation(cursor.value, fromAmount)}${to}`;
                         return;
                     }
                     return cursor.continue().then(doAgain);
