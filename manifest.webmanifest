@@ -1,7 +1,7 @@
 {
   "name": "Currency Converter",
   "short_name": "CConverter",
-  "start_url": "/",
+  "start_url": "/currencyconverter",
   "display": "standalone",
   "background_color": "#51B8CC",
   "theme_color": "#51B8CC",
