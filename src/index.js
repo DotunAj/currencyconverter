@@ -190,7 +190,6 @@ function handleClick() {
           .then(() => {
             //UX for when the rates are not found in the idb
             if (!showingConversion) {
-              console.log("yeah");
               toastHandler();
             }
             stopLoader();
