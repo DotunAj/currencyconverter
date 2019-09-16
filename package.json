@@ -1,0 +1,26 @@
+{
+  "name": "currencyconverter",
+  "version": "1.0.0",
+  "description": "An app that converts one currency to another",
+  "main": "/src/index.js",
+  "scripts": {
+    "build": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DotunAj/currencyconverter.git"
+  },
+  "author": "Ayodotun Ajala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DotunAj/currencyconverter/issues"
+  },
+  "homepage": "https://github.com/DotunAj/currencyconverter#readme",
+  "devDependencies": {
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
+  },
+  "dependencies": {
+    "idb": "^4.0.4"
+  }
+}
